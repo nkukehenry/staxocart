@@ -20,7 +20,8 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     
-    public function index(){
+    public function index()
+    {
 
         $data['products'] = $this->productsRepo->getPaginated(5);
         $data['title']    = trans_choice('product.product', 5);;
@@ -34,9 +35,10 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     
-    public function show($slug){
+    public function show($slug)
+    {
         $data['product'] = $this->productsRepo->getPaginated(5);
-        return view('vendor.products.create');
+        return view('vendor.products.create',$data);
     }
 
     /**
@@ -45,7 +47,8 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     
-    public function create(){
+    public function create()
+    {
         return view('vendor.products.create');
     }
 
@@ -53,7 +56,8 @@ class ProductController extends Controller
      * Creates a new product entry
      *  Redirects 'products'
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         
     }
 
@@ -61,7 +65,8 @@ class ProductController extends Controller
      *  Updates a  product entry
      *  Redirects 'products'
      */
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         
     }
 
@@ -69,7 +74,8 @@ class ProductController extends Controller
      *  Deletes a  product entry
      *  Redirects 'products'
      */
-    public function destroy(Request $request){
+    public function destroy(Request $request)
+    {
         
     }
     

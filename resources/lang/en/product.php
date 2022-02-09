@@ -13,4 +13,5 @@ return [
     |
     */
     'product' => 'Product|Products',
+    'buy_now' => 'Buy Now',
 ];

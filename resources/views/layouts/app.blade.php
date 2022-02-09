@@ -29,14 +29,24 @@
 
                 <div class="container">
 
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Library</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Data</li>
                             </ol>
-                        </nav>
+                        </nav> -->
                         
+                        <div class="page-title">
+                            <h3 >{{ $title }}</h3>
+                        </div>
+
+                        @if (session('message'))
+                         <div class="alert alert-success" role="alert">
+                            {{ session('message') }}
+                         </div>
+                        @endif
+
                      @yield('content')
 
                 </div>

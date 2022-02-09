@@ -13,4 +13,5 @@ return [
     |
     */
     'payment_successful' => 'Your payment was successful',
+    'welcome_message' => 'Welcome to Staxo Cart!',
 ];

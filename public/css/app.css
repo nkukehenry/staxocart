@@ -11286,6 +11286,37 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.page-title {
+  width: 100%;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
 .product-card {
-  margin: 5px;
+  margin-bottom: 10px;
+}
+
+.card-img-top {
+  min-height: 250px !important;
+  max-height: 250px !important;
+  background-color: #eeeeee;
+}
+
+.buy-btn {
+  min-width: 100% !important;
+  border-radius: 0px;
+}
+
+a .btn-primary, .btn-primary {
+  background-color: #e41414;
+  border-color: #e41414;
+}
+
+a .btn-primary:hover, .btn-primary:hover {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.text-primary {
+  color: #e41414;
 }

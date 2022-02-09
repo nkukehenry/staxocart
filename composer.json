@@ -59,8 +59,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "files":[
-        "app/Helpers/helpers.php"
-    ]
+    "prefer-stable": true
 }

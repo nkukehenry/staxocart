@@ -11297,8 +11297,6 @@ textarea.form-control-lg {
 }
 
 .card-img-top {
-  min-height: 250px !important;
-  max-height: 250px !important;
   background-color: #eeeeee;
 }
 
@@ -11343,4 +11341,14 @@ a .btn-primary:hover, .btn-primary:hover {
 
 .list-img img {
   background-color: #eeeeee;
+}
+
+.page-item.page-link {
+  color: #000000;
+}
+
+.page-item.active .page-link {
+  background-color: #e41414 !important;
+  border-color: #e41414 !important;
+  color: #ffffff;
 }

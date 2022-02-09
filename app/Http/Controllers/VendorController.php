@@ -26,10 +26,10 @@ class VendorController extends Controller
     public function index()
     {
 
-        $data['products'] = $this->productsRepo->getPaginated(5);
+        $data['products'] = $this->productsRepo->getPaginated(10);
         $data['title']    = __('menus.my_products' );;
 
-        return view('vendor.products',$data);
+        return view('catalogue.products',$data);
     }
 
 

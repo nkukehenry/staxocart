@@ -3,19 +3,22 @@
 @section('content')
     <div class="row justify-content-center">
 
-    @for($i=0; $i < 12; $i++)
+    @foreach($products as $prod)
     <div class="col-lg-3 col-md-6 col-sm-6 col-6 product-card">
         <div class="card">
-                <img class="card-img-top" src="https://picsum.photos/50/50"  alt="..." >
+                <img class="card-img-top" src="{{ asset('images/'.$prod->image->file_path) }}"  alt="..." >
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">{{ $prod->product_name }}</h5>
+                <h6 class="text-primary">{{ __('gen.currency_symbol') }} {{ number_format($prod->price) }}</h6>
+                <p class="card-text">{{ $prod->product_description }}</p>
                 <a href="" class="btn btn-primary buy-btn">{{ __('product.buy_now') }}</a>
             </div>
         </div>
     </div>
-    @endfor
-       
-
+    
+    @endforeach
     </div>
+
+    {{ $products->links() }}
+
 @endsection

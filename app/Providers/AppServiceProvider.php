@@ -7,6 +7,7 @@ use App\Repositories\ImagesRepository;
 use App\Repositories\OrdersRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\ProductsRepository;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+         //
+         Paginator::useBootstrap();
     }
 }

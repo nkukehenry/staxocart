@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['products'] = $this->productsRepo->getPaginated(15);
+        $data['products'] = $this->productsRepo->getPaginated(16);
         $data['title']    = __('messages.welcome_message');
 
         return view('catalogue.home',$data);

@@ -1,16 +1,16 @@
 <?php
+namespace App\Helpers;
 
-use Illuminate\Support\Facades\Auth;
+
+class Helper{
 
 /*
- * Returns current logged in user
+ * Returns ...not use 
  */
-
-if( !function_exists('get_user')){
-    function get_user(){
-        return Auth::user();
+    public static function get_user(){
+        return null;
     }
-}
 
+}
 
 ?>

@@ -17,8 +17,8 @@
    margin-bottom:10px;
 }
 .card-img-top{
-    min-height: 250px!important;
-    max-height: 250px!important;
+    // min-height: 250px!important;
+    // max-height: 250px!important;
     background-color: $img-placeholder-color;
 }
 .buy-btn{
@@ -59,4 +59,13 @@ a .btn-primary:hover, .btn-primary:hover{
 }
 .list-img img{
     background-color: $img-placeholder-color;
+}
+
+.page-item.page-link {
+    color:$theme-darkest-color;
+}
+.page-item.active .page-link {
+    background-color:$theme-color!important;
+    border-color: $theme-color!important;
+    color:#ffffff;
 }

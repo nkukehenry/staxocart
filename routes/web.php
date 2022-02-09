@@ -21,6 +21,7 @@ Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']
 Route::middleware(['auth'])->group(function () {
 
 Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'store'])->name('products.add');
+Route::post('/products/update', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
 Route::get('/vendor', [App\Http\Controllers\VendorController::class, 'index'])->name('vendor');
 
 });

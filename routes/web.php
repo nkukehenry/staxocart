@@ -17,3 +17,10 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
+
+Route::middleware(['auth'])->group(function () {
+
+Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'store'])->name('products.add');
+Route::get('/vendor', [App\Http\Controllers\VendorController::class, 'index'])->name('vendor');
+
+});

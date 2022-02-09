@@ -21,7 +21,11 @@
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products') }}">{{ __('menus.my_products') }}</a>
+                                <a class="nav-link" href="#add_product" data-bs-toggle="modal">{{ __('menus.add_product') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('vendor') }}">{{ __('menus.my_products') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('products') }}">{{ __('menus.my_orders') }}</a>

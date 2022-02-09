@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="row justify-content-center mt-5">
-                                <button type="submit" class="btn btn-primary col-6">
+                                <button type="submit" class="btn btn-dark col-6">
                                     {{ __('Login') }}
                                 </button>
                             </div>

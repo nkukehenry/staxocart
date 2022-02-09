@@ -11320,3 +11320,27 @@ a .btn-primary:hover, .btn-primary:hover {
 .text-primary {
   color: #e41414 !important;
 }
+
+.product-list-card, .product-list-card .row {
+  align-items: center;
+}
+
+.flexed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.v-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.h-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.list-img img {
+  background-color: #eeeeee;
+}

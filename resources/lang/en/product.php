@@ -14,4 +14,6 @@ return [
     */
     'product' => 'Product|Products',
     'buy_now' => 'Buy Now',
+    'name' => 'Product Name',
+    'price'=> 'Product Price'
 ];

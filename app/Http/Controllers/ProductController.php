@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function show($slug)
     {
         $data['product'] = $this->productsRepo->getPaginated(5);
-        return view('vendor.products.create',$data);
+        return view('vendor.product',$data);
     }
 
     /**
@@ -49,7 +49,7 @@ class ProductController extends Controller
     
     public function create()
     {
-        return view('vendor.products.create');
+        //return view('vendor.products.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->productsRepo->save($request);
     }
 
     /**

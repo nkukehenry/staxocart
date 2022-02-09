@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductsRepository{
 
@@ -14,6 +15,12 @@ class ProductsRepository{
     public function getProductBySlug($slug=null)
     {
         return ($slug !== null && is_numeric($slug))? Product::where('slug',$slug)->first():null;
+    }
+
+    public function save(Request $request)
+    {
+        
+
     }
 
     

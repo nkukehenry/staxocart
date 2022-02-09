@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\ProductsRepository;
+use App\Repositories\ProductsRepository;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,7 +12,6 @@ class ProductController extends Controller
     public function __construct(ProductsRepository $productsRepo)
     {
         $this->productsRepo = $productsRepo;
-        
     }
     
     /**
@@ -24,6 +23,8 @@ class ProductController extends Controller
     public function index(){
 
         $data['products'] = $this->productsRepo->getPaginated(5);
+        $data['title']    = trans_choice('product.product', 5);;
+
         return view('listing.home',$data);
     }
 

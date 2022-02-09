@@ -30,6 +30,6 @@ class HomeController extends Controller
         $data['products'] = $this->productsRepo->getPaginated(15);
         $data['title']    = trans_choice('product.product', 5);;
 
-        return view('listing.home',$data);
+        return view('catalogue.home',$data);
     }
 }

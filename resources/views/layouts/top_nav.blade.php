@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
-                    <a class="navbar-brand text-dark" href="{{ url('/') }}">
+                    <a class="navbar-brand text-primary text-bold" href="{{ url('/') }}">
                         {{ config('app.name') }}
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -36,13 +36,7 @@
                             @guest
                             @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('gen.am_vendor') }}</a>
                             </li>
                             @endif
                             @else

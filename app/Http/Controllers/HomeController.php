@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct(ProductsRepository $productsRepo)
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
         $this->productsRepo = $productsRepo;
     }
 

@@ -36,10 +36,11 @@
                                 <li class="breadcrumb-item active" aria-current="page">Data</li>
                             </ol>
                         </nav> -->
-                        
+                        @isset($title) 
                         <div class="page-title">
                             <h3 >{{ $title }}</h3>
                         </div>
+                        @endisset
 
                         @if (session('message'))
                          <div class="alert alert-success" role="alert">

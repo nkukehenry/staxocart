@@ -10,7 +10,7 @@
 .page-title{
     width: 100%;
     margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $theme-color;
 }
 
 .product-card{
@@ -35,5 +35,5 @@ a .btn-primary:hover, .btn-primary:hover{
     border-color:  $theme-darkest-color;
 }
 .text-primary{
-    color: $theme-color;
+    color: $theme-color!important;
 }

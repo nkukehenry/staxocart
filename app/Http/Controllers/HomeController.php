@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\ProductsRepository;
 
 class HomeController extends Controller
 {
+    
+    protected $productsRepo;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ProductsRepository $productsRepo)
     {
         $this->middleware('auth');
+        $this->productsRepo = $productsRepo;
     }
 
     /**
@@ -23,6 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['products'] = $this->productsRepo->getPaginated(24);
+
+        return view('listing.home',$data);
     }
 }

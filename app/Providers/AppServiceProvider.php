@@ -7,6 +7,8 @@ use App\Repositories\ImagesRepository;
 use App\Repositories\OrdersRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\ProductsRepository;
+use App\Services\IPaymentMethod;
+use App\Services\StripePayment;
 use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,17 +22,23 @@ class AppServiceProvider extends ServiceProvider
     {
         //Registering mode repositories
 
-        $this->app->bind(ProductsRepository::class, function ($app) {
+        $this->app->singleton(ProductsRepository::class, function ($app) {
              return new ProductsRepository(); });
 
-        $this->app->bind(CustomersRepository::class, function ($app) {
+        $this->app->singleton(CustomersRepository::class, function ($app) {
         return new CustomersRepository(); });
         
-        $this->app->bind(OrdersRepository::class, function ($app) {
+        $this->app->singleton(OrdersRepository::class, function ($app) {
             return new OrdersRepository(); });
 
-        $this->app->bind(ImagesRepository::class, function ($app) {
+        $this->app->singleton(ImagesRepository::class, function ($app) {
                 return new ImagesRepository(); });
+       
+        $this->app->singleton(IPaymentMethod::class, function($app){
+            // if($app->request->pay_mode =='stripe') //not in use coz of 1 payment method
+               return new StripePayment(); });
+
+       
     }
 
     /**

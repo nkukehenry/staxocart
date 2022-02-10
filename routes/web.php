@@ -19,7 +19,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
 Route::get('/products/detail/{slug}', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
 Route::post('/orders/checkout', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.checkout');
-Route::get('/orders/feedback', [App\Http\Controllers\OrderController::class, 'feedback'])->name('orders.feedback');
+Route::get('/orders/payment/{id}', [App\Http\Controllers\OrderController::class, 'payment'])->name('orders.payment');
+Route::post('/orders/pay', [App\Http\Controllers\OrderController::class, 'pay'])->name('orders.pay');
+Route::get('/orders/feedback/{order_id}', [App\Http\Controllers\OrderController::class, 'feedback'])->name('orders.feedback');
 
 
 Route::middleware(['auth'])->group(function () {

@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\OrdersRepository;
 use App\Repositories\ProductsRepository;
+use App\Services\IPaymentMethod;
+
 
 class OrderController extends Controller
 {
     
     protected $ordersRepo;
     protected $productsRepo;
+    protected $paymentMethod;
     
-    public function __construct(OrdersRepository $ordersRepo,ProductsRepository $productsRepo)
+    public function __construct(OrdersRepository $ordersRepo
+          ,ProductsRepository $productsRepo ,IPaymentMethod $paymentMethod)
     {
-        $this->ordersRepo = $ordersRepo;
-        $this->productsRepo = $productsRepo;
+        $this->ordersRepo    = $ordersRepo;
+        $this->productsRepo  = $productsRepo;
+        $this->paymentMethod = $paymentMethod;
     }
     
     /**
@@ -66,10 +72,20 @@ class OrderController extends Controller
         
         $product = $this->productsRepo->getProductBySlug($request->slug);
 
-        $this->ordersRepo->save($request,$product); 
-        return redirect(route('orders.feedback') );
+        $order = $this->ordersRepo->save($request,$product); 
+
+        return redirect(route('orders.payment', $order->id) );
     }
 
+     /**
+     *  Updates a  order entry
+     *  Redirects home'
+     */
+    public function payment($orderId)
+    {
+        $data['order'] = $this->ordersRepo->getOrderById($orderId);
+        return view('catalogue.payment',$data);
+    }
 
     /**
      *  Updates a  order entry
@@ -84,8 +100,29 @@ class OrderController extends Controller
     /**
      *  Presents Feedback
      */
+    public function pay(Request $request)
+    {
+        $request->validate([
+            'stripeToken'=>'required',
+            'order'=>'required'
+        ]);
+        
+        $order   = $this->ordersRepo->getOrderById($request->order);
+        $payment = $this->paymentMethod->processPayment($request,$order);
+
+        $data['order'] = $this->ordersRepo->updateOrder($order ,$payment);
+    
+        Session::flash('success', 'Payment successful!');
+        return redirect(route('orders.feedback',$order->id) );
+    }
+
+
+    /**
+     *  Presents Feedback
+     */
     public function feedback(Request $request)
     {
+        $data['order'] = $this->ordersRepo->getOrderById( $request->order_id);
         return view('catalogue.feedback');
     }
 

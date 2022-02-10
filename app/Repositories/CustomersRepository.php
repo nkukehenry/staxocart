@@ -17,6 +17,10 @@ class CustomersRepository{
         return $customer;
     }
     
+
+    public function getCustomer($id){
+        return Customer::find($id);
+    }
     
 }
 

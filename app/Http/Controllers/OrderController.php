@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendOrderEmail;
+use App\Mails\OrderReceived;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Repositories\CustomersRepository;
@@ -10,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 use App\Repositories\OrdersRepository;
 use App\Repositories\ProductsRepository;
 use App\Services\IPaymentMethod;
-
+use Illuminate\Support\Carbon;
 
 class OrderController extends Controller
 {
@@ -120,7 +122,16 @@ class OrderController extends Controller
         $payment = $this->paymentMethod->processPayment($request,$order);
 
         $data['order'] = $this->ordersRepo->updateOrder($order ,$payment);
-    
+
+        $customer = $this->customersRepo->getCustomer($data['order']->customer_id);
+
+
+        $mailJob =(new SendOrderEmail( $order,$customer)) 
+        ->delay(Carbon::now()->addMinutes(5))
+        ->onQueue('mails');
+        
+        dispatch($mailJob);
+
         Session::flash('success', 'Payment successful!');
         return redirect(route('orders.feedback',$order->id) );
     }

@@ -40,6 +40,11 @@ class ProductsRepository{
 
     }
 
+    public function delete($slug)
+    {
+        return Product::where('slug',$slug)->delete();
+    }
+
     
 }
 

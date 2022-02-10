@@ -17,5 +17,6 @@ return [
     'name' => 'Product Name',
     'price'=> 'Product Price',
     'image'=>'Product Image',
-    'edit_product' => 'Edit Product'
+    'edit_product' => 'Edit Product',
+    'delete_product'=>'Delete Product?'
 ];

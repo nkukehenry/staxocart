@@ -20,8 +20,9 @@ Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']
 
 Route::middleware(['auth'])->group(function () {
 
+Route::get('/vendor', [App\Http\Controllers\VendorController::class, 'index'])->name('vendor');
 Route::post('/products/add', [App\Http\Controllers\ProductController::class, 'store'])->name('products.add');
 Route::post('/products/update', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
-Route::get('/vendor', [App\Http\Controllers\VendorController::class, 'index'])->name('vendor');
+Route::get('/products/delete/{slug}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('products.delete');
 
 });

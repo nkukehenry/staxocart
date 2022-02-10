@@ -105,9 +105,12 @@ class ProductController extends Controller
      *  Deletes a  product entry
      *  Redirects 'products'
      */
-    public function destroy(Request $request)
+    public function destroy($slug)
     {
-        
+        $this->productsRepo->delete($slug);
+        Session::flash('message', __('messages.product_deleted')); 
+        return redirect('vendor');
+    
     }
     
     

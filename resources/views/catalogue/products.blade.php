@@ -15,6 +15,7 @@
     @foreach($products as $prod)
 
     @include('catalogue.partials.edit_product_modal')
+    @include('catalogue.partials.delete_product_modal')
 
       <div class="col-lg-6 col-md-12 col-sm-12 col-12  mb-2">
         <div class="card product-list-card">
@@ -29,7 +30,7 @@
               </div>
             <div class="col-3">
                 <a href="#edit_product{{$prod->slug}}" data-bs-toggle="modal" class="btn btn-link">{{ __('gen.edit') }}</a>
-                <a href="" class="btn btn-link text-danger">{{ __('gen.delete') }}</a>
+                <a href="#delete_product{{$prod->slug}}" data-bs-toggle="modal" class="btn btn-link text-danger">{{ __('gen.delete') }}</a>
             </div>
         </div>
         </div>

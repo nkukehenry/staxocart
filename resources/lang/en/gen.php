@@ -8,7 +8,8 @@ return [
     'save_change' => 'Save Changes',
     'delete' => 'Delete',
     'description'=>'Description',
-    'currency_symbol'=>'$'
+    'currency_symbol'=>'$',
+    'yes'=>'Yes'
 ];
 
 ?>

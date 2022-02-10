@@ -15,5 +15,6 @@ return [
     'payment_successful' => 'Your payment was successful',
     'welcome_message' => 'Welcome to Staxo Cart!',
     'product_added' => 'Product added successfully',
-    'product_updated' => 'Product updated successfully'
+    'product_updated' => 'Product updated successfully',
+    'product_deleted' => 'Product deleted successfully'
 ];

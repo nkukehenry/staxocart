@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         return new CustomersRepository(); });
         
         $this->app->bind(OrdersRepository::class, function ($app) {
-            return new OrdersRepository( new ProductsRepository()); });
+            return new OrdersRepository(); });
 
         $this->app->bind(ImagesRepository::class, function ($app) {
                 return new ImagesRepository(); });

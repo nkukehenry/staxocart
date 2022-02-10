@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\OrdersRepository;
+use App\Repositories\ProductsRepository;
 
 class OrderController extends Controller
 {
     
     protected $ordersRepo;
+    protected $productsRepo;
     
-    public function __construct(OrdersRepository $ordersRepo)
+    public function __construct(OrdersRepository $ordersRepo,ProductsRepository $productsRepo)
     {
         $this->ordersRepo = $ordersRepo;
+        $this->productsRepo = $productsRepo;
     }
     
     /**
@@ -61,10 +64,10 @@ class OrderController extends Controller
             'email' => 'required'
         ]);
         
-        $this->ordersRepo->save($request);
+        $product = $this->productsRepo->getProductBySlug($request->slug);
 
-        Session::flash('message', __('messages.product_added')); 
-        return redirect('orders.feedback');
+        $this->ordersRepo->save($request,$product); 
+        return redirect(route('orders.feedback') );
     }
 
 

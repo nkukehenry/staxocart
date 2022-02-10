@@ -16,11 +16,20 @@
 .product-card{
    margin-bottom:10px;
 }
-.card-img-top{
-    // min-height: 250px!important;
-    // max-height: 250px!important;
-    background-color: $img-placeholder-color;
+.product-link, .product-link:hover{
+    text-decoration: none;
+    color:inherit;
 }
+.card-img-top{
+    min-height: 200px!important;
+    max-height: 200px!important;
+    overflow: hidden;
+    background-color: $img-placeholder-color;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
 .buy-btn{
     min-width: 100%!important;
     border-radius: 0px;

@@ -41,8 +41,10 @@ class ProductController extends Controller
     
     public function show($slug)
     {
-        $data['product'] = $this->productsRepo->getPaginated(5);
-        return view('catalogue.product',$data);
+        $product = $this->productsRepo->getProductBySlug($slug);
+        $data['product']  = $product;
+        $data['title']    = $product->product_name;
+        return view('catalogue.show',$data);
     }
 
     /**

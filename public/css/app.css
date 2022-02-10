@@ -11296,8 +11296,19 @@ textarea.form-control-lg {
   margin-bottom: 10px;
 }
 
+.product-link, .product-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .card-img-top {
+  min-height: 200px !important;
+  max-height: 200px !important;
+  overflow: hidden;
   background-color: #eeeeee;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .buy-btn {

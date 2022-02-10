@@ -15,9 +15,9 @@ class ProductsRepository{
          : Product::paginate($perPage);  //all products
     }
 
-    public function getProductBySlug($slug=null)
+    public function getProductBySlug($slug)
     {
-        return ($slug !== null && is_numeric($slug))? Product::where('slug',$slug)->first():null;
+        return Product::where('slug',$slug)->first();
     }
 
     public function save(Request $request)

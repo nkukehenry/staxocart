@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\PaymentCompletion;
 use App\Jobs\SendOrderEmail;
 use App\Mails\OrderReceived;
 use App\Models\Customer;
@@ -118,23 +119,64 @@ class OrderController extends Controller
             'order'=>'required'
         ]);
         
+        $request  = (Object) $request->all();
+
         $order   = $this->ordersRepo->getOrderById($request->order);
-        $payment = $this->paymentMethod->processPayment($request,$order);
+        //pay
+        $payment = $this->paymentMethod->processPayment($request,$order,false);
+        $data['order'] = $this->ordersRepo->updateOrder($order ,$payment);
+        $customer = $this->customersRepo->getCustomer($data['order']->customer_id);
+
+        $this->sendEmail($order, $customer);
+
+        Session::flash('success', 'Payment successful!');
+        return redirect(route('orders.feedback',$order->id) );
+    }
+
+
+    /**
+     *  Split payment Feedback
+     */
+    public function splitpay(Request $request)
+    {
+        $request->validate([
+            'stripeToken'=>'required',
+            'order'=>'required'
+        ]);
+        
+        $request  = (Object) $request->all();
+        
+        $order   = $this->ordersRepo->getOrderById($request->order);
+        $payment = $this->paymentMethod->processPayment($request,$order,true);
 
         $data['order'] = $this->ordersRepo->updateOrder($order ,$payment);
 
         $customer = $this->customersRepo->getCustomer($data['order']->customer_id);
 
+        $this->sendEmail($order, $customer);
 
-        $mailJob =(new SendOrderEmail( $order,$customer)) 
+
+        $deferPaymentJob =(new PaymentCompletion($request,$this->paymentMethod, $order,$customer)) 
         ->delay(Carbon::now()->addMinutes(5))
         ->onQueue('mails');
         
-        dispatch($mailJob);
+        dispatch($deferPaymentJob);
 
         Session::flash('success', 'Payment successful!');
         return redirect(route('orders.feedback',$order->id) );
     }
+
+
+
+    private function sendEmail($order, $customer){
+
+        $mailJob =(new SendOrderEmail( $order,$customer)) 
+        //->delay(Carbon::now()->addMinutes(5))
+        ->onQueue('mails');
+        
+        dispatch($mailJob);
+    }
+
 
 
     /**

@@ -24,7 +24,7 @@
                         </div>
                     @endif
   
-                    <form role="form" action="{{ route('orders.pay') }}" method="post" class="require-validation"
+                    <form role="form" action="{{ route('orders.splitpay') }}" method="post" class="require-validation"
                                                     data-cc-on-file="false"
                                                     data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                                                     id="payment-form">
@@ -95,8 +95,10 @@
 <script type="text/javascript">
 
 $(function() {
+
     var $form         = $(".require-validation");
   $('form.require-validation').bind('submit', function(e) {
+
     var $form         = $(".require-validation"),
         inputSelector = ['input[type=email]', 'input[type=password]',
                          'input[type=text]', 'input[type=file]',
@@ -106,7 +108,9 @@ $(function() {
         valid         = true;
         $errorMessage.addClass('hide');
  
-        $('.has-error').removeClass('has-error');
+    $('.has-error').removeClass('has-error');
+
+//validation
     $inputs.each(function(i, el) {
       var $input = $(el);
       if ($input.val() === '') {
@@ -117,27 +121,33 @@ $(function() {
     });
   
     if (!$form.data('cc-on-file')) {
+
       e.preventDefault();
       Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+
       Stripe.createToken({
         number: $('.card-number').val(),
         cvc: $('.card-cvc').val(),
         exp_month: $('.card-expiry-month').val(),
         exp_year: $('.card-expiry-year').val()
       }, stripeResponseHandler);
+
     }
   
   });
   
   function stripeResponseHandler(status, response) {
+
         if (response.error) {
             $('.error')
                 .removeClass('hide')
                 .find('.alert')
                 .text(response.error.message);
         } else {
+
             // token contains id, last4, and card type
             var token = response['id'];
+
             // insert the token into the form so it gets submitted to the server
             $form.find('input[type=text]').empty();
             $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");

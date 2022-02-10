@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 
 interface IPaymentMethod {
 
-    public function processPayment(Request $request,$order);
+    public function processPayment(Object $request,$order,$splitPayment);
 
 }
 

@@ -21,6 +21,7 @@ Route::get('/products/detail/{slug}', [App\Http\Controllers\ProductController::c
 Route::post('/orders/checkout', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.checkout');
 Route::get('/orders/payment/{id}', [App\Http\Controllers\OrderController::class, 'payment'])->name('orders.payment');
 Route::post('/orders/pay', [App\Http\Controllers\OrderController::class, 'pay'])->name('orders.pay');
+Route::post('/orders/splitpay', [App\Http\Controllers\OrderController::class, 'splitpay'])->name('orders.splitpay');
 Route::get('/orders/feedback/{order_id}', [App\Http\Controllers\OrderController::class, 'feedback'])->name('orders.feedback');
 
 

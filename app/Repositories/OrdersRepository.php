@@ -21,7 +21,7 @@ class OrdersRepository{
     {
     
        $order   =  new Order();
-       $order->customer_id  = 1;
+       $order->customer_id  = $request->customer_id;
        $order->order_total  = $product->price * $request->quantity;
        $order->amount_paid  = 0;
        $order->pment_method = 'Stripe';

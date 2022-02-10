@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
+use App\Repositories\CustomersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\OrdersRepository;
@@ -16,13 +18,16 @@ class OrderController extends Controller
     protected $ordersRepo;
     protected $productsRepo;
     protected $paymentMethod;
+    protected $customersRepo;
     
     public function __construct(OrdersRepository $ordersRepo
-          ,ProductsRepository $productsRepo ,IPaymentMethod $paymentMethod)
+          ,ProductsRepository $productsRepo ,IPaymentMethod $paymentMethod
+          ,CustomersRepository $customersRepo)
     {
         $this->ordersRepo    = $ordersRepo;
         $this->productsRepo  = $productsRepo;
         $this->paymentMethod = $paymentMethod;
+        $this->customersRepo = $customersRepo;
     }
     
     /**
@@ -71,6 +76,10 @@ class OrderController extends Controller
         ]);
         
         $product = $this->productsRepo->getProductBySlug($request->slug);
+
+        $customer = $this->customersRepo->save($request);
+
+        $request['customer_id'] = $customer->id;
 
         $order = $this->ordersRepo->save($request,$product); 
 

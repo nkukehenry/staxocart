@@ -9,7 +9,12 @@ return [
     'delete' => 'Delete',
     'description'=>'Description',
     'currency_symbol'=>'$',
-    'yes'=>'Yes'
+    'yes'=>'Yes',
+    'checkout'=>'Checkout',
+    'email'=>'Enter Your  Email',
+    'quantity'=>"Quantity",
+    'buying'=>"Your're buying",
+    "back_home"=>"Back Home"
 ];
 
 ?>

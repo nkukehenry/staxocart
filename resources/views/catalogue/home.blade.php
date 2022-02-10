@@ -4,6 +4,9 @@
     <div class="row justify-content-center">
 
     @foreach($products as $prod)
+
+    @include('catalogue.partials.buy_product_modal')
+
     <div class="col-lg-3 col-md-6 col-sm-6 col-6 product-card">
        <a href="{{ route('products.show',$prod->slug) }}" class="product-link"> 
         <div class="card">
@@ -14,7 +17,7 @@
                 <h5 class="card-title">{{ $prod->product_name }}</h5>
                 <h6 class="text-primary">{{ __('gen.currency_symbol') }} {{ number_format($prod->price) }}</h6>
                 <p class="card-text">{{ $prod->product_description }}</p>
-                <a href="" class="btn btn-primary buy-btn mt-2">{{ __('product.buy_now') }}</a>
+                <a href="#buy_product{{$prod->slug}}" data-bs-toggle="modal" class="btn btn-primary buy-btn mt-2">{{ __('product.buy_now') }}</a>
             </div>
         </div>
         </a>

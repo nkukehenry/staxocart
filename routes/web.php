@@ -18,6 +18,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
 Route::get('/products/detail/{slug}', [App\Http\Controllers\ProductController::class, 'show'])->name('products.show');
+Route::post('/orders/checkout', [App\Http\Controllers\OrderController::class, 'create'])->name('orders.checkout');
+Route::get('/orders/feedback', [App\Http\Controllers\OrderController::class, 'feedback'])->name('orders.feedback');
 
 
 Route::middleware(['auth'])->group(function () {

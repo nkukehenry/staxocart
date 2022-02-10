@@ -2,9 +2,9 @@
 ## Steps to Run
 Be sure to create a Db and configure in the .env
 
-<code>composer install</code>
-<code>npm install && npm run dev</code>
-<code>php artisan serve</code>
+<code>composer install</code><br>
+<code>npm install && npm run dev</code><br>
+<code>php artisan serve</code><br>
 
 
 
